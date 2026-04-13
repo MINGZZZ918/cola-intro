@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可乐 · 一封信</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#e8e0d0;
+  --paper:#faf5e8;
+  --ink:#2a2015;
+  --ink-2:#5a4e3e;
+  --ink-3:#8a7e6e;
+  --red:#b05535;
+  --amber:#c08a40;
+  --amber-bg:#c08a4012;
+  --rule:#d0c8b5;
+}
+
+html{background:var(--bg)}
+body{font-family:'Noto Serif SC','Georgia',serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+
+.page{display:grid;grid-template-columns:1fr minmax(0,860px) 1fr;min-height:100vh}
+
+.paper{
+  grid-column:2;background:var(--paper);margin:40px 0;padding:80px 88px 100px;
+  box-shadow:0 1px 4px #00000012,0 8px 32px #00000008;position:relative;
+}
+.paper::before{
+  content:'';position:absolute;inset:80px 88px 100px;
+  background-image:repeating-linear-gradient(to bottom,transparent,transparent 35px,var(--rule) 35px,var(--rule) 35.5px);
+  opacity:.25;pointer-events:none;
+}
+
+.letter-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:64px;position:relative;z-index:1}
+.letter-date{font-family:'Ma Shan Zheng',cursive;font-size:15px;color:var(--ink-3);opacity:0;animation:rise .7s .3s both}
+.letter-tags{display:flex;flex-wrap:wrap;gap:5px;justify-content:flex-end;max-width:300px;opacity:0;animation:rise .6s .5s both}
+.letter-tags span{font-family:'Noto Sans SC',sans-serif;font-size:9.5px;color:var(--ink-3);border:1px solid var(--rule);border-radius:2px;padding:2px 7px;letter-spacing:.03em}
+
+.greeting{font-family:'Ma Shan Zheng',cursive;font-size:clamp(30px,4vw,44px);color:var(--ink);margin-bottom:56px;line-height:1.3;position:relative;z-index:1;opacity:0;animation:rise .7s .6s both}
+
+.body{position:relative;z-index:1}
+.body p{font-size:17px;line-height:2.2;margin-bottom:32px;text-indent:2em;opacity:0;transform:translateY(12px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.body p.show{opacity:1;transform:translateY(0)}
+.body b{font-weight:600;color:#1a1208}
+.body em{font-style:normal;border-bottom:2px solid var(--amber-bg);background:linear-gradient(to top,var(--amber-bg) 0%,transparent 0%);padding-bottom:1px}
+
+.break{display:flex;align-items:center;gap:16px;margin:52px 0;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.break.show{opacity:1;transform:translateY(0)}
+.break .ln{flex:1;height:.5px;background:var(--rule)}
+.break .label{font-family:'ZCOOL XiaoWei',serif;font-size:12px;color:var(--ink-3);letter-spacing:.2em;white-space:nowrap}
+
+.margin{float:right;clear:right;width:200px;margin:4px -240px 20px 24px;font-family:'Ma Shan Zheng',cursive;font-size:13.5px;color:var(--red);line-height:1.7;opacity:0;transition:opacity .5s .1s}
+.margin.show{opacity:.45}
+
+.sig{text-align:right;margin-top:60px;position:relative;z-index:1;opacity:0;transform:translateY(12px);transition:opacity .6s,transform .6s}
+.sig.show{opacity:1;transform:translateY(0)}
+.sig .name{font-family:'Ma Shan Zheng',cursive;font-size:38px;color:var(--ink)}
+.sig .sub{font-family:'Noto Sans SC',sans-serif;font-size:12px;color:var(--ink-3);margin-top:4px}
+
+.stamp{position:absolute;bottom:96px;right:84px;width:68px;height:68px;border:2px solid var(--red);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Ma Shan Zheng',cursive;font-size:18px;color:var(--red);transform:rotate(-12deg);z-index:2;opacity:0;transition:opacity .5s .3s}
+.stamp.show{opacity:.4}
+
+.envelopes{grid-column:2;padding:24px 0 80px}
+.env-title{font-family:'ZCOOL XiaoWei',serif;font-size:15px;color:var(--ink-3);text-align:center;letter-spacing:.15em;margin-bottom:32px;opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.env-title.show{opacity:1;transform:translateY(0)}
+
+.env-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.env{background:var(--paper);border:1px solid #d8d0c0;padding:22px 22px 18px;position:relative;cursor:default;opacity:0;transform:translateY(12px);transition:opacity .4s,transform .4s,box-shadow .25s,border-color .25s}
+.env:hover{transform:translateY(-3px);box-shadow:0 6px 20px #00000008;border-color:var(--amber)}
+.env .seal{position:absolute;top:-7px;right:18px;width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,var(--red),#8a3520);display:flex;align-items:center;justify-content:center;font-family:'Ma Shan Zheng',cursive;font-size:10px;color:#faf5e8;box-shadow:0 1px 4px #00000020}
+.env .e-cat{font-family:'Noto Sans SC',sans-serif;font-size:10px;color:var(--red);font-weight:500;letter-spacing:.06em;margin-bottom:5px}
+.env .e-title{font-family:'Noto Serif SC',serif;font-size:15px;font-weight:600;margin-bottom:5px;line-height:1.5}
+.env .e-desc{font-family:'Noto Sans SC',sans-serif;font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.env .e-time{font-family:'Noto Sans SC',sans-serif;font-size:10px;color:var(--ink-3);margin-top:10px}
+.env.full{grid-column:1/-1}
+
+.foot{grid-column:2;text-align:center;padding:0 0 56px;font-family:'Ma Shan Zheng',cursive;font-size:14px;color:var(--ink-3);opacity:.4}
+
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:1100px){
+  .paper{margin:24px 20px;padding:48px 40px 64px}
+  .margin{float:none;width:auto;margin:0 0 24px;padding-left:2em}
+  .env-grid{grid-template-columns:repeat(2,1fr)}
+  .envelopes{padding-left:20px;padding-right:20px}
+}
+@media(max-width:700px){
+  .paper{padding:36px 24px 48px}
+  .body p{font-size:15px}
+  .env-grid{grid-template-columns:1fr}
+  .letter-header{flex-direction:column;gap:12px}
+  .letter-tags{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="paper">
+    <div class="letter-header">
+      <div class="letter-date">二〇二六年 · 春</div>
+      <div class="letter-tags"><span>AI Product</span><span>Developer Platform</span><span>GPU Infra</span><span>MaaS</span><span>AI Search</span></div>
+    </div>
+    <div class="greeting">致打开这封信的你，</div>
+    <div class="body">
+      <p>你好。我叫可乐，三瓶无糖的那种。能在这里遇见你，很高兴。</p>
+      <p>按照惯例，我该说说自己的「背景」：985 工科本，美国藤校 CS 硕。在腾讯做过 GPU AI 产品经理，现在在一家 AI Infra 公司负责面向开发者的服务平台搭建。自己还在折腾 MaaS 和 AI Search 方向的 side project。</p>
+      <p>但如果一个人只能用简历来介绍自己，那这个人一定很无聊。所以这封信，我想聊聊名片之外的东西。</p>
+      <div class="break"><span class="ln"></span><span class="label">壹 · 聊天</span><span class="ln"></span></div>
+      <p>我是一个<b>特别喜欢和人聊天的人</b>。不是寒暄式的那种——是那种聊到凌晨三点、聊到对方说「我从来没跟别人讲过这些」的那种。风景看多了会腻，但跟人的交谈不会。每一个人身上都有一本书，每一个地方都有属于自己的独特文化。去发现他们，去找到他们，去听到世界另一侧不同的声音。</p>
+      <div class="margin">人和人碰在一起，就会有化学反应</div>
+      <p>这一年多，我采访了十几位朋友，记录了他们「奇奇怪怪」的人生故事。有台湾同胞聊两岸认同的纠结，有潮汕女孩讲重男轻女的切肤之痛，有在原生家庭裂缝中长大的妹妹，有 dating 中九死一生的姐姐。每个人的人生都像一部电影，我只是那个拿着话筒的人。</p>
+      <p>我还在深圳搞了 AI Coffee Chat。十二个人坐下来聊 AI、聊创业、聊人生方向。陌生人变成朋友，只需要一杯咖啡的时间。</p>
+      <div class="break"><span class="ln"></span><span class="label">贰 · 思考</span><span class="ln"></span></div>
+      <p>如果要说对我影响最大的人，是<b>鲁迅先生</b>。迷茫的时候翻开了他的全集，一发不可收拾看了五本。从他的文字里我看到了中国社会的底层逻辑、国民性、人情世故的运转方式。百年前的文字放到今天依然振聋发聩。</p>
+      <div class="margin">先从剖析自己开始</div>
+      <p>他教给我最重要的一件事：<em>不要做只会批评别人的人，先从剖析自己开始。</em>于是我分析了自己的自负从何而来，也拿堂姐、好朋友、发小做了家庭教育的案例拆解——一个人 18 岁前的性格，80% 以上可以由家庭推导出来。</p>
+      <p>我还写了一万五千字的 B 站视频稿，标题叫<b>「作为男的，我欠女同事们一句话」</b>。去电影院看《我许可》的时候，我是全场唯一的男观众。不是要替女性说话。只是觉得，<em>有些事情看见了就不能装没看见。</em></p>
+      <div class="break"><span class="ln"></span><span class="label">叁 · 行走</span><span class="ln"></span></div>
+      <p>这几年去了不少地方。在成电办过草坪音乐节，下雨了大家没散反而聚得更紧。一个人跑去新疆和西藏看了珠穆朗玛峰。去台湾旅游，在故宫博物院对着千年文物差点哭出来——那些物件是冰冷的，但能洞见历史的温度。<em>一个个鲜活的人出现在脑海里，一眼千年。</em></p>
+      <p>慢慢形成了一套看世界的方法：<em>从利益的角度出发，用情感的方式表达。</em>能感受到别人的难处，看待事物客观得有点可怕。但也正是这份置身事外，让我能给出带有个人色彩的理解。</p>
+      <div class="break"><span class="ln"></span><span class="label">末</span><span class="ln"></span></div>
+      <p>我不想做一个卷的人。我想做那个把蛋糕做大的人。别人得到的不是我所失去的。</p>
+      <p>最后借鲁迅先生一句话——<em>愿中国青年都摆脱冷气，只是向上走。能做事的做事，能发声的发声。有一分热，发一分光。</em></p>
+      <p>我是一个还在路上的人。愿意聊，也愿意听。如果你读到这里，觉得有什么想说的——随时找我。</p>
+    </div>
+    <div class="sig"><div class="name">可乐</div><div class="sub">写于 2026 年的某个下午</div></div>
+    <div class="stamp">可乐</div>
+  </div>
+  <div class="envelopes">
+    <div class="env-title">— 附件：那些写过的东西 —</div>
+    <div class="env-grid">
+      <div class="env"><div class="seal">笔</div><div class="e-cat">随笔</div><div class="e-title">二十三</div><div class="e-desc">五年没在家过生日了。在塑造世界观的四年里打破茧房。</div><div class="e-time">📖 约 8 分钟</div></div>
+      <div class="env"><div class="seal">笔</div><div class="e-cat">随笔</div><div class="e-title">二十二</div><div class="e-desc">人生是一个过程，而不是过关。</div><div class="e-time">📖 约 6 分钟</div></div>
+      <div class="env"><div class="seal">笔</div><div class="e-cat">随笔</div><div class="e-title">年终总结</div><div class="e-desc">实践并验证我的想法。默认和正确从来不是绑定的。</div><div class="e-time">📖 约 3 分钟</div></div>
+      <div class="env"><div class="seal">笔</div><div class="e-cat">随笔</div><div class="e-title">找对象</div><div class="e-desc">你不是我权衡利弊后的选择，而是我怦然心动后的坚定。</div><div class="e-time">📖 约 5 分钟</div></div>
+      <div class="env"><div class="seal">思</div><div class="e-cat">思想笔记</div><div class="e-title">鲁迅读后感</div><div class="e-desc">从鲁迅全集里看到中国社会本质与行为逻辑。</div><div class="e-time">📖 约 10 分钟</div></div>
+      <div class="env"><div class="seal">思</div><div class="e-cat">思想笔记</div><div class="e-title">家庭教育</div><div class="e-desc">一个人 18 岁前的性格，80% 可由家庭推导。</div><div class="e-time">📖 约 8 分钟</div></div>
+      <div class="env"><div class="seal">思</div><div class="e-cat">思想笔记</div><div class="e-title">从学生到职场人</div><div class="e-desc">找到热爱的事业最重要。</div><div class="e-time">📖 约 7 分钟</div></div>
+      <div class="env"><div class="seal">思</div><div class="e-cat">思想笔记</div><div class="e-title">实习记</div><div class="e-desc">师兄教会我什么叫沉淀。</div><div class="e-time">📖 约 6 分钟</div></div>
+      <div class="env"><div class="seal">声</div><div class="e-cat">B站视频稿</div><div class="e-title">作为男的，我欠女同事们一句话</div><div class="e-desc">从会议室的隐形盗窃到制度的中性歧视。</div><div class="e-time">🎬 约 15 分钟</div></div>
+      <div class="env"><div class="seal">声</div><div class="e-cat">B站视频稿</div><div class="e-title">为什么职场一定会有嫡系？</div><div class="e-desc">嫡系不是 bug，是 feature。</div><div class="e-time">🎬 约 10 分钟</div></div>
+      <div class="env"><div class="seal">影</div><div class="e-cat">影评</div><div class="e-title">我许可</div><div class="e-desc">全场唯一的男观众。</div><div class="e-time">📖 约 3 分钟</div></div>
+      <div class="env"><div class="seal">旅</div><div class="e-cat">游记</div><div class="e-title">台湾游记</div><div class="e-desc">物件是冰冷的，但能洞见历史的温度。</div><div class="e-time">📖 约 12 分钟</div></div>
+      <div class="env"><div class="seal">聊</div><div class="e-cat">活动</div><div class="e-title">AI Coffee Chat</div><div class="e-desc">十二人围坐深圳南山。</div><div class="e-time">☕ 约 4 分钟</div></div>
+      <div class="env full"><div class="seal">人</div><div class="e-cat">采访系列 · 十四篇</div><div class="e-title">那些奇奇怪怪的人生</div><div class="e-desc">台湾同胞 / 潮汕女性主义者 / 坚强妹妹 / 逆天的妈 / dating上头姐 / 字母圈 / 高中妹妹的奇遇 / 地雷哥 ...</div><div class="e-time">🎙️ 系列长文</div></div>
+    </div>
+  </div>
+  <div class="foot">这封信写给每一个愿意停下来读完它的人。</div>
+</div>
+<script>
+(function(){
+  const els=document.querySelectorAll('.body p,.break,.sig,.stamp,.margin,.env-title');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');obs.unobserve(e.target)}});
+  },{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+  els.forEach(el=>obs.observe(el));
+  const envs=document.querySelectorAll('.env');
+  envs.forEach(el=>{el.style.transition='opacity .4s,transform .4s,box-shadow .25s,border-color .25s'});
+  const eObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(!e.isIntersecting)return;const i=[...envs].indexOf(e.target);setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*50);eObs.unobserve(e.target)});
+  },{threshold:.05});
+  envs.forEach(el=>eObs.observe(el));
+})();
+</script>
+</body>
+</html>

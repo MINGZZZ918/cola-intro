@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>可乐</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#141210;
+  --surface:#1c1a16;
+  --border:#2a2722;
+  --text:#ddd5c8;
+  --text-2:#a09888;
+  --text-3:#685e50;
+  --warm:#c8956a;
+  --warm-dim:#9e7050;
+  --warm-bg:#c8956a0c;
+}
+
+html{background:var(--bg)}
+body{font-family:'Noto Sans SC',system-ui,sans-serif;color:var(--text);-webkit-font-smoothing:antialiased}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  padding:60px 24px;
+  text-align:center;
+  position:relative;
+}
+
+.hero-name{
+  font-family:'Ma Shan Zheng',cursive;
+  font-size:clamp(56px,10vw,96px);
+  color:var(--text);
+  letter-spacing:.08em;
+  margin-bottom:16px;
+  opacity:0;animation:fadeUp .8s .2s both;
+}
+
+.hero-line{
+  width:40px;height:1px;background:var(--warm);
+  margin:0 auto 20px;
+  opacity:0;animation:fadeUp .6s .5s both;
+}
+
+.hero-sub{
+  font-size:clamp(14px,2vw,17px);
+  color:var(--text-2);
+  line-height:2;
+  max-width:480px;
+  opacity:0;animation:fadeUp .6s .7s both;
+}
+
+.hero-scroll{
+  position:absolute;bottom:40px;
+  font-size:12px;color:var(--text-3);
+  letter-spacing:.15em;
+  opacity:0;animation:fadeUp .6s 1.2s both;
+}
+.hero-scroll span{
+  display:block;width:1px;height:24px;
+  background:linear-gradient(to bottom,var(--text-3),transparent);
+  margin:8px auto 0;
+}
+
+/* ===== CONVERSATION SECTION ===== */
+.convo-section{
+  max-width:1200px;margin:0 auto;
+  padding:0 24px 120px;
+}
+
+.section-head{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:48px;
+  padding-top:80px;
+}
+.section-head .num{
+  font-family:'ZCOOL XiaoWei',serif;
+  font-size:12px;color:var(--warm);
+  letter-spacing:.2em;
+  white-space:nowrap;
+}
+.section-head .rule{flex:1;height:1px;background:var(--border)}
+
+/* ===== CHAT FLOW ===== */
+.chat-flow{
+  display:grid;
+  grid-template-columns:1fr minmax(0,640px) 1fr;
+  gap:0;
+}
+
+/* left/right context columns */
+.chat-flow .ctx-l,.chat-flow .ctx-r{
+  padding-top:8px;
+}
+.chat-flow .ctx-l{text-align:right;padding-right:32px}
+.chat-flow .ctx-r{padding-left:32px}
+
+.ctx-note{
+  font-family:'Ma Shan Zheng',cursive;
+  font-size:13px;color:var(--warm-dim);
+  opacity:0;transform:translateY(8px);
+  transition:opacity .5s,transform .5s;
+  line-height:1.7;
+}
+.ctx-note.show{opacity:.55;transform:translateY(0)}
+
+/* center conversation */
+.chat-center{
+  display:flex;flex-direction:column;gap:4px;
+}
+
+.msg{
+  display:flex;flex-direction:column;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .5s cubic-bezier(.16,1,.3,1),transform .5s cubic-bezier(.16,1,.3,1);
+}
+.msg.show{opacity:1;transform:translateY(0)}
+.msg.v{align-items:flex-start}
+.msg.c{align-items:flex-end}
+.msg.v+.msg.c,.msg.c+.msg.v{margin-top:20px}
+
+.bub{
+  max-width:88%;padding:14px 20px;
+  font-size:15.5px;line-height:1.9;
+  word-break:break-word;
+}
+.v .bub{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px 20px 20px 20px;
+  color:var(--text-2);
+  font-size:15px;
+}
+.c .bub{
+  background:#1e1b16;
+  border:1px solid #2e2a22;
+  border-radius:20px 4px 20px 20px;
+}
+.c .bub.hl{
+  border-color:#c8956a18;
+  background:#201c15;
+}
+.bub b{color:var(--warm);font-weight:600}
+.bub i{font-style:normal;color:#bca080}
+
+.gap{height:48px}
+
+/* ===== ARTICLE GRID ===== */
+.articles-section{
+  max-width:1200px;margin:0 auto;
+  padding:0 24px 120px;
+}
+
+.article-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
+
+.article{
+  padding:24px 24px 20px;
+  border:1px solid var(--border);
+  border-radius:2px;
+  position:relative;
+  transition:border-color .3s,background .3s;
+  cursor:default;
+}
+.article:hover{
+  border-color:#c8956a25;
+  background:var(--warm-bg);
+}
+.article .a-cat{
+  font-size:10px;color:var(--warm-dim);
+  letter-spacing:.1em;font-weight:500;
+  margin-bottom:8px;
+}
+.article .a-title{
+  font-family:'Noto Serif SC',serif;
+  font-size:16px;font-weight:600;
+  margin-bottom:8px;line-height:1.5;
+}
+.article .a-desc{
+  font-size:13px;color:var(--text-2);
+  line-height:1.7;
+}
+.article .a-time{
+  font-size:10px;color:var(--text-3);
+  margin-top:12px;
+}
+
+.article.wide{grid-column:span 2}
+.article.full{grid-column:1/-1}
+
+/* ===== CLOSING ===== */
+.closing{
+  max-width:640px;margin:0 auto;
+  padding:0 24px 160px;
+  text-align:center;
+}
+.closing-quote{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(18px,2.5vw,22px);
+  color:var(--text);
+  line-height:2.2;
+  margin-bottom:12px;
+  opacity:0;transform:translateY(12px);
+  transition:opacity .6s,transform .6s;
+}
+.closing-quote.show{opacity:1;transform:translateY(0)}
+
+.closing-attr{
+  font-family:'Ma Shan Zheng',cursive;
+  font-size:14px;color:var(--text-3);
+  opacity:0;transition:opacity .5s .2s;
+}
+.closing-attr.show{opacity:1}
+
+.closing-end{
+  margin-top:64px;
+  font-size:13px;color:var(--text-3);
+  line-height:2;
+  opacity:0;transform:translateY(10px);
+  transition:opacity .6s,transform .6s;
+}
+.closing-end.show{opacity:1;transform:translateY(0)}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .chat-flow{grid-template-columns:1fr}
+  .chat-flow .ctx-l,.chat-flow .ctx-r{display:none}
+  .article-grid{grid-template-columns:1fr}
+  .article.wide{grid-column:span 1}
+  .bub{max-width:90%}
+}
+
+@media(max-width:600px){
+  .hero{padding:40px 20px;min-height:90vh}
+  .convo-section,.articles-section{padding-left:16px;padding-right:16px}
+  .section-head{padding-top:48px;margin-bottom:32px}
+  .bub{font-size:14px;padding:11px 15px}
+  .article{padding:18px 18px 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-name">可乐</div>
+  <div class="hero-line"></div>
+  <div class="hero-sub">
+    记录者 · 思考者 · 产品人<br>
+    喜欢和人聊天，喜欢听故事
+  </div>
+  <div class="hero-scroll">
+    SCROLL
+    <span></span>
+  </div>
+</section>
+
+<!-- ===== INTRO ===== -->
+<div class="convo-section">
+  <div class="section-head">
+    <span class="num">壹 · 你好</span>
+    <span class="rule"></span>
+  </div>
+
+  <div class="chat-flow">
+    <div class="ctx-l"></div>
+    <div class="chat-center">
+
+      <div class="msg v"><div class="bub">你好，你是谁？</div></div>
+      <div class="msg c"><div class="bub">我叫可乐。三瓶无糖的那种。</div></div>
+      <div class="msg c"><div class="bub">985 工科本，美国藤校 CS 硕。在腾讯搞过 GPU AI 产品，现在在一家 AI Infra 公司做产品经理，给开发者搭平台。自己还在折腾 MaaS 和 AI Search 的 side project。</div></div>
+      <div class="msg c"><div class="bub hl">但这些都是名片上的东西。如果你有五分钟，我想跟你聊点名片之外的。</div></div>
+
+      <div class="gap"></div>
+
+      <div class="msg v"><div class="bub">那你觉得自己是什么样的人？</div></div>
+      <div class="msg c"><div class="bub">我是一个<b>特别喜欢和人聊天的人</b>。不是寒暄式的那种——是那种聊到凌晨三点、聊到对方说「我从来没跟别人说过这些」的那种。</div></div>
+      <div class="msg c"><div class="bub">风景看多了会腻，但跟人的交谈不会。每一个人身上都有一本书。去发现他们，去找到他们，去听到世界另一侧不同的声音。</div></div>
+      <div class="msg c"><div class="bub hl"><i>我更喜欢从利益的角度出发，再用情感的方式表达。</i></div></div>
+
+    </div>
+    <div class="ctx-r">
+      <div class="ctx-note">这大概是我最准确的自我描述了</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THINKING ===== -->
+<div class="convo-section">
+  <div class="section-head">
+    <span class="num">贰 · 思考</span>
+    <span class="rule"></span>
+  </div>
+
+  <div class="chat-flow">
+    <div class="ctx-l">
+      <div class="ctx-note" style="margin-top:180px">我自己就是被溺爱的那种</div>
+    </div>
+    <div class="chat-center">
+
+      <div class="msg v"><div class="bub">你平时都在想什么？</div></div>
+      <div class="msg c"><div class="bub">脑子里一直在跑好几条线。但有三条最粗。</div></div>
+      <div class="msg c"><div class="bub"><b>鲁迅。</b>迷茫的时候翻开了鲁迅全集，一发不可收拾看了五本。他让我看到了中国社会的底层逻辑、国民性、人情世故的运转方式。百年前的文字放到今天依然振聋发聩。</div></div>
+      <div class="msg c"><div class="bub"><b>家庭教育。</b>我认为一个人 18 岁前的性格，80% 以上可以由家庭推导出来。拿自己、堂姐、好朋友、发小做了四个案例拆解——缺父爱的容易恋爱脑，缺母爱的容易溺死在情绪里，被溺爱的容易自负。</div></div>
+      <div class="msg c"><div class="bub"><b>女性主义——从男性视角。</b>我是那个影院里唯一的男观众。也是那个写了一万五千字 B 站稿件，标题叫「作为男的，我欠女同事们一句话」的人。有些事情看见了就不能装没看见。</div></div>
+      <div class="msg c"><div class="bub hl"><i>建立一套自己的逻辑体系，不被言论和舆论裹挟。别人得到的不是我所失去的。</i></div></div>
+
+    </div>
+    <div class="ctx-r">
+      <div class="ctx-note" style="margin-top:60px">百年前的智慧<br>至今振聋发聩</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== RECORDING ===== -->
+<div class="convo-section">
+  <div class="section-head">
+    <span class="num">叁 · 记录</span>
+    <span class="rule"></span>
+  </div>
+
+  <div class="chat-flow">
+    <div class="ctx-l">
+      <div class="ctx-note" style="margin-top:120px">每个人的人生都像一部电影</div>
+    </div>
+    <div class="chat-center">
+
+      <div class="msg v"><div class="bub">你做过什么有意思的事？</div></div>
+      <div class="msg c"><div class="bub">做了一个采访系列——十几个人，都是些「奇奇怪怪」的人生故事。台湾同胞、潮汕女性主义者、字母圈的姑娘、被原生家庭伤害的妹妹、dating 上头的姐姐……</div></div>
+      <div class="msg c"><div class="bub">我只是那个拿着话筒的人，把这些声音记录下来。</div></div>
+      <div class="msg c"><div class="bub">还搞了 <b>AI Coffee Chat</b>。在深圳南山拉了十二个人坐下来聊 AI。人和人碰在一起，就会产生化学反应。</div></div>
+      <div class="msg c"><div class="bub hl">在成电办过草坪音乐节，下雨了大家没散反而聚得更紧。一个人跑去新疆西藏看了珠穆朗玛峰。在台湾故宫博物院对着千年文物差点哭出来——<i>物件是冰冷的，但能洞见历史的温度。</i></div></div>
+
+    </div>
+    <div class="ctx-r">
+      <div class="ctx-note" style="margin-top:200px">一眼千年</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== ARTICLES ===== -->
+<div class="articles-section">
+  <div class="section-head">
+    <span class="num">肆 · 写过的东西</span>
+    <span class="rule"></span>
+  </div>
+
+  <div class="article-grid">
+    <div class="article"><div class="a-cat">随笔</div><div class="a-title">二十三</div><div class="a-desc">五年没在家过生日了。在塑造世界观的四年里打破茧房，留学这一年看到了很多不一样的状态。</div><div class="a-time">📖 约 8 分钟</div></div>
+    <div class="article"><div class="a-cat">随笔</div><div class="a-title">二十二</div><div class="a-desc">人生是一个过程，而不是过关。面子并不是一个有价值的东西。</div><div class="a-time">📖 约 6 分钟</div></div>
+    <div class="article"><div class="a-cat">随笔</div><div class="a-title">找对象</div><div class="a-desc">你不是我权衡利弊后的选择，而是我怦然心动后的坚定。</div><div class="a-time">📖 约 5 分钟</div></div>
+    <div class="article"><div class="a-cat">思想笔记</div><div class="a-title">鲁迅读后感</div><div class="a-desc">从鲁迅全集里看到中国社会本质、国民性与行为逻辑。</div><div class="a-time">📖 约 10 分钟</div></div>
+    <div class="article"><div class="a-cat">思想笔记</div><div class="a-title">家庭教育</div><div class="a-desc">一个人 18 岁前的性格，80% 可由家庭推导。四个真实案例。</div><div class="a-time">📖 约 8 分钟</div></div>
+    <div class="article"><div class="a-cat">思想笔记</div><div class="a-title">从学生到职场人</div><div class="a-desc">没人再给你安排方向了。找到热爱的事业最重要。</div><div class="a-time">📖 约 7 分钟</div></div>
+    <div class="article wide"><div class="a-cat">B站视频稿</div><div class="a-title">作为男的，我欠女同事们一句话</div><div class="a-desc">从会议室的隐形盗窃，到制度的中性歧视，到男性拿了多少免费的分。辛辣输出，男性自省视角。</div><div class="a-time">🎬 约 15 分钟</div></div>
+    <div class="article"><div class="a-cat">B站视频稿</div><div class="a-title">为什么职场一定会有嫡系？</div><div class="a-desc">嫡系不是 bug，是 feature。</div><div class="a-time">🎬 约 10 分钟</div></div>
+    <div class="article"><div class="a-cat">影评</div><div class="a-title">我许可</div><div class="a-desc">全场唯一的男观众。女性想要的真的不多。</div><div class="a-time">📖 约 3 分钟</div></div>
+    <div class="article"><div class="a-cat">游记</div><div class="a-title">台湾游记</div><div class="a-desc">物件是冰冷的，但能洞见历史的温度。</div><div class="a-time">📖 约 12 分钟</div></div>
+    <div class="article"><div class="a-cat">随笔</div><div class="a-title">年终总结</div><div class="a-desc">实践并验证我的想法。默认和正确从来不是绑定的。</div><div class="a-time">📖 约 3 分钟</div></div>
+    <div class="article"><div class="a-cat">思想笔记</div><div class="a-title">实习记</div><div class="a-desc">师兄教会我什么叫沉淀。六十分够用，一百分不可能。</div><div class="a-time">📖 约 6 分钟</div></div>
+    <div class="article"><div class="a-cat">活动</div><div class="a-title">AI Coffee Chat · 深圳南山</div><div class="a-desc">十二人围坐，从 AI 创业聊到人生方向。</div><div class="a-time">☕ 约 4 分钟</div></div>
+    <div class="article full"><div class="a-cat">采访系列 · 十四篇</div><div class="a-title">那些奇奇怪怪的人生</div><div class="a-desc">台湾同胞 / 潮汕女性主义者 / 坚强妹妹 / 逆天的妈 / dating上头姐 / 字母圈 / 高中妹妹的奇遇 / 地雷哥 ...</div><div class="a-time">🎙️ 系列长文</div></div>
+  </div>
+</div>
+
+<!-- ===== CLOSING ===== -->
+<section class="closing">
+  <div class="closing-quote">愿中国青年都摆脱冷气，只是向上走。<br>能做事的做事，能发声的发声。<br>有一分热，发一分光。</div>
+  <div class="closing-attr">—— 鲁迅</div>
+  <div class="closing-end">
+    一个还在路上的人，愿意聊，也愿意听。<br>
+    如果你也想聊点什么——随时找我。
+  </div>
+</section>
+
+<script>
+(function(){
+  const els=document.querySelectorAll('.msg,.ctx-note,.article,.closing-quote,.closing-attr,.closing-end');
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      if(e.target.classList.contains('article')){
+        const all=[...document.querySelectorAll('.article')];
+        setTimeout(()=>e.target.classList.add('show'),all.indexOf(e.target)*50);
+      }else{
+        e.target.classList.add('show');
+      }
+      obs.unobserve(e.target);
+    });
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(el=>{
+    if(!el.classList.contains('msg'))return obs.observe(el);
+    obs.observe(el);
+  });
+
+  // stagger same-sender messages
+  const msgs=document.querySelectorAll('.msg');
+  const mObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      e.target.classList.add('show');
+      mObs.unobserve(e.target);
+    });
+  },{threshold:.1,rootMargin:'0px 0px -20px 0px'});
+  let prev=null,delay=0;
+  msgs.forEach(el=>{
+    const sameSender=prev&&
+      ((el.classList.contains('c')&&prev.classList.contains('c'))||
+       (el.classList.contains('v')&&prev.classList.contains('v')));
+    delay=sameSender?delay+100:0;
+    el.style.transitionDelay=delay+'ms';
+    mObs.observe(el);
+    prev=el;
+  });
+
+  // articles need show class for opacity transition
+  document.querySelectorAll('.article').forEach(el=>{
+    el.style.opacity='0';el.style.transform='translateY(12px)';
+    el.style.transition='opacity .4s,transform .4s,border-color .3s,background .3s';
+  });
+  const aObs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting)return;
+      const all=[...document.querySelectorAll('.article')];
+      const i=all.indexOf(e.target);
+      setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*50);
+      aObs.unobserve(e.target);
+    });
+  },{threshold:.05});
+  document.querySelectorAll('.article').forEach(el=>aObs.observe(el));
+})();
+</script>
+</body>
+</html>
