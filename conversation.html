@@ -127,29 +127,6 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 .pull-quote p{font-family:var(--display);font-size:clamp(24px,4vw,40px);color:var(--ink);line-height:1.7;margin-bottom:12px}
 .pull-quote cite{font-family:var(--serif);font-size:13px;color:var(--ink-3);font-style:normal;letter-spacing:.05em}
 
-/* slogan banner */
-.slogan-banner{
-  max-width:1100px;margin:0 auto;
-  padding:clamp(48px,8vh,100px) clamp(24px,8vw,160px);
-  display:flex;flex-direction:column;gap:24px;
-}
-.slogan-item{
-  display:flex;align-items:baseline;gap:16px;
-}
-.slogan-num{
-  font-family:var(--label);font-size:12px;color:var(--accent);
-  letter-spacing:.1em;flex-shrink:0;opacity:.6;
-}
-.slogan-text{
-  font-family:var(--display);
-  font-size:clamp(28px,5vw,48px);
-  color:var(--ink);line-height:1.4;
-}
-.slogan-divider{
-  width:48px;height:1px;background:var(--accent);
-  margin:8px 0 8px 0;opacity:.3;
-}
-
 /* friend block */
 .friend-block{
   background:var(--bg-2);border-radius:2px;
@@ -192,14 +169,12 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 @media(max-width:768px){
   .hero{padding:100px 24px 60px;min-height:85vh}
   .section{padding-left:20px;padding-right:20px}
-  .slogan-banner{padding-left:20px;padding-right:20px}
   .article-card.wide{grid-column:span 1}
   .article-grid{grid-template-columns:1fr}
   .pull-quote p{font-size:clamp(22px,6vw,32px)}
   .top-nav{height:48px;padding:0 16px}
   .top-nav .nav-name{font-size:17px}
   .top-nav .nav-links a{font-size:12px}
-  .slogan-item{flex-direction:column;gap:4px}
 }
 @media(max-width:480px){
   .hero-name{font-size:clamp(36px,12vw,52px)}
@@ -233,72 +208,97 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
   <div class="hero-scroll-hint">SCROLL</div>
 </section>
 
-<!-- ===== 壹 · 主线 ===== -->
+<!-- ===== 壹 · 你好 ===== -->
 <div class="section">
-  <div class="section-label reveal">壹 · 主线</div>
+  <div class="section-label reveal">壹 · 你好</div>
 
   <div class="qa reveal">
-    <div class="q">你的两句 slogan 是怎么来的？</div>
+    <div class="q">你是谁？</div>
     <div class="a">
-      <p>不是某一天灵光乍现。是听品牌定位的课，和潮汕女生聊女性主义，看到朋友圈一段话——几件不相关的事突然串起来了。</p>
-      <p>品牌定位消耗大量资源，但一旦做出来，收益巨大——它是无形的重资产。<strong>一句 slogan 可能价值整个企业价值观 80% 的含金量。</strong>人生也一样。</p>
+      <p>我叫三瓶无糖可乐。名字有点长，但记住了就忘不掉。</p>
+      <p>985 工科本，美国藤校 CS 硕。在腾讯搞过 GPU AI 产品，现在在一家 AI Infra 公司做产品经理，给开发者搭平台。自己还在折腾 MaaS 和 AI Search 的 side project。</p>
     </div>
   </div>
 
-  <div class="a-highlight reveal">定位就像人生的主线任务。理清了这个，主次就明了，方向就清晰。——这不是我自己总结的，是朋友陈怡冰听完我的想法后说出来的。</div>
+  <div class="a-highlight reveal">但这些都是名片上的东西。如果你有五分钟，我想跟你聊点名片之外的。</div>
 
   <div class="qa reveal">
-    <div class="q">「解放妇女劳动生产力」——为什么是这句？</div>
+    <div class="q">那你觉得自己是什么样的人？</div>
     <div class="a">
-      <p>因为我看到了。</p>
-      <p>影院里全场唯一的男观众，是我。写了一万五千字 B 站稿件《作为男的，我欠女同事们一句话》的人，也是我。</p>
-      <p>所谓的"自由选择"，很多时候是<strong>在一堆都有惩罚的选项里挑一个惩罚最小的</strong>。这不叫自由，这叫在笼子里选牢房。</p>
-      <p>你没觉得有麻烦，不是因为麻烦不存在，是因为它从来不找你。</p>
-      <p>鲁迅早就看透了——"节烈"对男性指思想立场，对女性专指身体贞操，极度双标。一百年了，这个结构变了多少？</p>
+      <p>我是一个<strong>特别喜欢和人聊天的人</strong>。不是寒暄式的那种——是那种聊到凌晨三点、聊到对方说「我从来没跟别人说过这些」的那种。</p>
+      <p>无论学历无论背景，我觉得<strong>每一个愿意分享的人背后一定有一段非常精彩的人生</strong>。去发现他们，去找到他们，去听到世界另一侧不同的声音。</p>
+      <p>我爱真诚的人。我更喜欢从利益的角度出发，再用情感的方式表达。</p>
     </div>
   </div>
 
-  <div class="a-highlight reveal">没有极端女权也不会有平权。鲁迅说了：你要把天花板打破，他们才肯开窗。改变不是一个宏大的宣言，改变是一万个微小的决定。不做"盟友表演家"——真正的支持是改变行为，不是发朋友圈。</div>
-
   <div class="qa reveal">
-    <div class="q">「教会大家玩乐心态」呢？</div>
+    <div class="q">平时喜欢什么？</div>
     <div class="a">
-      <p>成都四年，是我人生最开心的四年。乐天的情绪，巴适的心态，好吃的饭菜，让我对生活有了全新的认识。</p>
-      <p>读大学最重要的两件事：<strong>找到热爱的事业，享受生活、找到生命中所涵盖的乐趣。</strong></p>
-      <p>太多人把人生当成过关——升学、考研、进大厂、升职。但人生是一个过程，不是过关。面子并不是一个有价值的东西。</p>
+      <p>最喜欢的男演员是<strong>胡歌</strong>，女演员是<strong>文淇</strong>，最爱的主持人是<strong>鲁豫</strong>。鲁豫的采访风格影响了我——她总能在看似闲聊中触到最真实的东西。</p>
+      <p>成都四年，是我人生最开心的四年。乐天的情绪，巴适的心态，好吃的饭菜，让我对生活有了全新的认识。人生是一个过程，不是过关。</p>
     </div>
   </div>
 </div>
 
 <!-- ===== PULL QUOTE ===== -->
 <div class="pull-quote reveal">
-  <p>看见了就不能装没看见。</p>
+  <p>名片之外，才是一个人真正的样子。</p>
 </div>
 
-<!-- ===== SLOGAN BANNER ===== -->
-<div class="slogan-banner reveal">
-  <div class="slogan-item">
-    <span class="slogan-num">01</span>
-    <span class="slogan-text">解放妇女劳动生产力</span>
-  </div>
-  <div class="slogan-divider"></div>
-  <div class="slogan-item">
-    <span class="slogan-num">02</span>
-    <span class="slogan-text">教会大家玩乐心态</span>
-  </div>
-</div>
-
-<!-- ===== 贰 · 方法论 ===== -->
+<!-- ===== 贰 · 思考 ===== -->
 <div class="section">
-  <div class="section-label reveal">贰 · 方法论</div>
+  <div class="section-label reveal">贰 · 思考</div>
 
   <div class="qa reveal">
-    <div class="q">有了方向之后，你怎么走？</div>
+    <div class="q">你平时都在想什么？</div>
     <div class="a">
-      <p>三句话。</p>
+      <p>脑子里一直在跑好几条线。但有三条最粗。</p>
+    </div>
+  </div>
+
+  <div class="qa reveal">
+    <div class="q">哪三条？</div>
+    <div class="a">
+      <p><strong>鲁迅。</strong>迷茫的时候翻开了鲁迅全集，一发不可收拾看了五本。他让我看到了中国社会的底层逻辑、国民性、人情世故的运转方式。</p>
+      <p>勇者愤怒，抽刃向更强者；怯者愤怒，却抽刃向更弱者。一百年过去了，很多道理依然适用。</p>
+      <p>建立一套自己的逻辑体系，不被言论和舆论裹挟。<strong>别人得到的不是我所失去的。</strong></p>
+    </div>
+  </div>
+
+  <div class="qa reveal">
+    <div class="q">第二条线？</div>
+    <div class="a">
+      <p><strong>家庭教育。</strong>我认为一个人 18 岁前的性格，80% 以上可以由家庭推导出来。好的童年治愈人一生，坏的童年需要人治愈一生。</p>
+      <p>拿自己和身边人做了案例拆解——缺父爱的容易恋爱脑，缺母爱的容易溺死在情绪里，被溺爱的容易自负。我自己就是被溺爱的那种，所以能看到那个自负的影子。</p>
+    </div>
+  </div>
+
+  <div class="qa reveal">
+    <div class="q">第三条？</div>
+    <div class="a">
+      <p><strong>女性主义——从男性视角。</strong>我是那个影院里唯一的男观众。也是那个写了一万五千字 B 站稿件《作为男的，我欠女同事们一句话》的人。</p>
+      <p>你没觉得有麻烦，不是因为麻烦不存在，是因为它从来不找你。看见了就不能装没看见——真正的支持是改变行为，不是发朋友圈。</p>
+    </div>
+  </div>
+
+  <div class="a-highlight reveal">建立一套自己的逻辑体系，不被言论和舆论裹挟。别人得到的不是我所失去的。</div>
+</div>
+
+<!-- ===== PULL QUOTE ===== -->
+<div class="pull-quote reveal">
+  <p>要么孤独，要么庸俗。<br>这路上的风景却额外让我着迷。</p>
+</div>
+
+<!-- ===== 叁 · 方法论 ===== -->
+<div class="section">
+  <div class="section-label reveal">叁 · 方法论</div>
+
+  <div class="qa reveal">
+    <div class="q">你探索世界的方式是什么？</div>
+    <div class="a">
       <p><strong>实践出真知。</strong>人是无法通过想象来取得最优解的，只能通过实践找到局部最优解。专注现实，不空泛地想象那条路。</p>
-      <p><strong>理论要和实际结合。</strong>毛泽东论持久战——干中学；周恩来做事不务虚，领导也要坚持一线；邓小平多实践，少空想。三个伟人，同一条道理。</p>
-      <p><strong>团结一切可以团结的力量。</strong>再偏门的选择，也能在这片土地上找到同路的人。女性主义不能走纯粹主义路线——包容、团结，才能真正推动改变。</p>
+      <p><strong>理论要和实际结合。</strong>毛泽东论持久战——干中学；周恩来做事不务虚，领导也要坚持一线；邓小平多实践，少空想。</p>
+      <p><strong>团结一切可以团结的力量。</strong>再偏门的选择，也能在这片土地上找到同路的人。包容、团结，才能真正推动改变。</p>
     </div>
   </div>
 
@@ -308,46 +308,7 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
     <div class="q">能举个例子吗？</div>
     <div class="a">
       <p>陪朋友去了一次天主教入教仪式。那个神父为了在市中心建教堂，融合了 56 个民族、所有宗教文化，但核心始终是天主教。手段灵活，目标坚定。</p>
-      <p>如果用一句话总结我过去这一年：<strong>实践并验证我的想法。</strong>唯物辩证法、女性主义、认识和改造世界——三条线并行。默认和正确从来不是绑定的，实践才是检验的唯一标准。</p>
-    </div>
-  </div>
-</div>
-
-<!-- ===== PULL QUOTE ===== -->
-<div class="pull-quote reveal">
-  <p>人无法通过想象取得最优解，<br>只能通过实践找到局部最优解。</p>
-</div>
-
-<!-- ===== 叁 · 思想 ===== -->
-<div class="section">
-  <div class="section-label reveal">叁 · 思想</div>
-
-  <div class="qa reveal">
-    <div class="q">你是怎么建立自己思想体系的？</div>
-    <div class="a">
-      <p><strong>鲁迅。</strong>迷茫的时候翻开了鲁迅全集，一发不可收拾看了五本。他让我看到了中国社会的底层逻辑、国民性、人情世故的运转方式。</p>
-      <p>勇者愤怒，抽刃向更强者；怯者愤怒，却抽刃向更弱者。一百年过去了，很多道理依然适用。</p>
-      <p>建立一套自己的逻辑体系，不被言论和舆论裹挟。<strong>别人得到的不是我所失去的。</strong></p>
-    </div>
-  </div>
-
-  <div class="qa reveal">
-    <div class="q">除了鲁迅呢？</div>
-    <div class="a">
-      <p><strong>家庭教育。</strong>我认为一个人 18 岁前的性格，80% 以上可以由家庭推导出来。好的童年治愈人一生，坏的童年需要人治愈一生。</p>
-      <p>拿自己和身边人做了案例拆解——缺父爱的容易恋爱脑，缺母爱的容易溺死在情绪里，被溺爱的容易自负。我自己就是被溺爱的那种，所以能看到那个自负的影子。</p>
-      <p>曾经有过把别人捧高再期待摔下来的心理。想通之后，转变为<strong>做把蛋糕做大的人</strong>。</p>
-    </div>
-  </div>
-
-  <div class="a-highlight reveal">要么孤独，要么庸俗。我似乎在走向一条通往"孤独"的路上，但这路上的风景却额外让我着迷。</div>
-
-  <div class="qa reveal">
-    <div class="q">你怎么看待"成功"这件事？</div>
-    <div class="a">
-      <p>人生远不止是大厂。成绩好只意味着成绩好，不代表有完备人格、风趣谈吐或人格魅力。</p>
-      <p><strong>能力是底牌，信任是杠杆。</strong>光有底牌没有杠杆，翻不了大牌。</p>
-      <p>不要还没开始就觉得自己不行。要有高配得感。趁年轻多试错，别怕犯错。</p>
+      <p>曾经有过把别人捧高再期待摔下来的心理。想通之后，转变为<strong>做把蛋糕做大的人</strong>。能力是底牌，信任是杠杆——光有底牌没有杠杆，翻不了大牌。</p>
     </div>
   </div>
 </div>
@@ -360,6 +321,7 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 <!-- ===== 肆 · 记录 ===== -->
 <div class="section">
   <div class="section-label reveal">肆 · 记录</div>
+
 
   <div class="qa reveal">
     <div class="q">你做过什么有意思的事？</div>
