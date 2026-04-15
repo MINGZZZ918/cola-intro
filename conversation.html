@@ -29,7 +29,7 @@
 html{background:var(--bg);scroll-behavior:smooth}
 body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* ===== TOP NAV — always visible ===== */
+/* ===== TOP NAV ===== */
 .top-nav{
   position:fixed;top:0;left:0;right:0;z-index:100;
   display:flex;justify-content:space-between;align-items:center;
@@ -42,17 +42,13 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 }
 .top-nav.scrolled{box-shadow:0 1px 12px rgba(44,36,24,.06)}
 .top-nav .nav-name{
-  font-family:var(--display);
-  font-size:20px;color:var(--accent);
-  text-decoration:none;
-  letter-spacing:.02em;
+  font-family:var(--display);font-size:20px;color:var(--accent);
+  text-decoration:none;letter-spacing:.02em;
 }
 .top-nav .nav-links{display:flex;gap:clamp(14px,3vw,28px);align-items:center}
 .top-nav .nav-links a{
-  font-size:13px;color:var(--ink-3);
-  text-decoration:none;letter-spacing:.04em;
-  padding:4px 0;
-  position:relative;transition:color .25s;
+  font-size:13px;color:var(--ink-3);text-decoration:none;
+  letter-spacing:.04em;padding:4px 0;position:relative;transition:color .25s;
 }
 .top-nav .nav-links a:hover{color:var(--ink)}
 .top-nav .nav-links a.active{color:var(--accent);font-weight:500}
@@ -63,257 +59,151 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 
 /* ===== HERO ===== */
 .hero{
-  min-height:100vh;
-  display:flex;flex-direction:column;
+  min-height:100vh;display:flex;flex-direction:column;
   justify-content:center;align-items:flex-start;
   padding:120px clamp(24px,8vw,160px) 80px;
-  max-width:1100px;margin:0 auto;
+  max-width:1100px;margin:0 auto;position:relative;
 }
 .hero-label{
-  font-family:var(--label);
-  font-size:11px;color:var(--accent);
-  letter-spacing:.25em;
-  text-transform:uppercase;
-  margin-bottom:24px;
+  font-family:var(--label);font-size:11px;color:var(--accent);
+  letter-spacing:.25em;margin-bottom:24px;
   opacity:0;animation:fadeIn .6s .1s both;
 }
 .hero-name{
   font-family:var(--display);
-  font-size:clamp(48px,9vw,88px);
-  color:var(--ink);
-  line-height:1.15;
-  margin-bottom:20px;
+  font-size:clamp(48px,9vw,88px);color:var(--ink);
+  line-height:1.15;margin-bottom:20px;
   opacity:0;animation:fadeIn .7s .25s both;
 }
-.hero-rule{
-  width:48px;height:2px;background:var(--accent);
-  margin-bottom:28px;
-  opacity:0;animation:fadeIn .5s .45s both;
-}
+.hero-rule{width:48px;height:2px;background:var(--accent);margin-bottom:28px;opacity:0;animation:fadeIn .5s .45s both}
 .hero-desc{
-  font-family:var(--serif);
-  font-size:clamp(16px,2.2vw,20px);
-  color:var(--ink-2);
-  line-height:2;max-width:520px;
+  font-family:var(--serif);font-size:clamp(16px,2.2vw,20px);
+  color:var(--ink-2);line-height:2;max-width:540px;
   opacity:0;animation:fadeIn .6s .6s both;
 }
 .hero-scroll-hint{
   position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
-  font-size:10px;letter-spacing:.2em;color:var(--ink-4);
-  text-align:center;
+  font-size:10px;letter-spacing:.2em;color:var(--ink-4);text-align:center;
   opacity:0;animation:fadeIn .5s 1.2s both;
 }
 .hero-scroll-hint::after{
   content:'';display:block;width:1px;height:20px;
-  background:linear-gradient(to bottom,var(--ink-4),transparent);
-  margin:6px auto 0;
+  background:linear-gradient(to bottom,var(--ink-4),transparent);margin:6px auto 0;
 }
 
-/* ===== SECTION LAYOUT ===== */
-.section{
-  max-width:1100px;margin:0 auto;
-  padding:0 clamp(24px,8vw,160px) clamp(80px,10vh,140px);
-}
+/* ===== SECTION ===== */
+.section{max-width:1100px;margin:0 auto;padding:0 clamp(24px,8vw,160px) clamp(80px,10vh,140px)}
 .section-label{
-  font-family:var(--label);
-  font-size:11px;color:var(--accent);
-  letter-spacing:.2em;
-  margin-bottom:40px;
-  padding-bottom:16px;
+  font-family:var(--label);font-size:11px;color:var(--accent);
+  letter-spacing:.2em;margin-bottom:40px;padding-bottom:16px;
   border-bottom:1px solid rgba(184,90,58,.15);
 }
 
-/* ===== INTERVIEW Q&A ===== */
+/* ===== Q&A ===== */
 .qa{margin-bottom:clamp(48px,6vh,72px)}
 .qa:last-child{margin-bottom:0}
-
 .q{
-  font-family:var(--serif);
-  font-size:clamp(13px,1.6vw,15px);
-  color:var(--accent);
-  font-weight:600;
-  margin-bottom:16px;
-  padding-left:20px;
-  position:relative;
+  font-family:var(--serif);font-size:clamp(13px,1.6vw,15px);
+  color:var(--accent);font-weight:600;margin-bottom:16px;
+  padding-left:20px;position:relative;
 }
-.q::before{
-  content:'Q';
-  position:absolute;left:0;top:0;
-  font-family:var(--label);
-  font-size:11px;color:var(--accent);
-  opacity:.5;
-}
-
-.a{
-  font-family:var(--serif);
-  font-size:clamp(15px,1.8vw,17.5px);
-  color:var(--ink);
-  line-height:2.1;
-  padding-left:20px;
-}
+.q::before{content:'Q';position:absolute;left:0;top:0;font-family:var(--label);font-size:11px;color:var(--accent);opacity:.5}
+.a{font-family:var(--serif);font-size:clamp(15px,1.8vw,17.5px);color:var(--ink);line-height:2.1;padding-left:20px}
 .a p{margin-bottom:16px}
 .a p:last-child{margin-bottom:0}
 .a strong{color:var(--accent);font-weight:600}
 .a em{font-style:normal;color:var(--ink-2)}
 
-/* highlight block — key quotes */
+/* highlight */
 .a-highlight{
-  margin:24px 0 24px 20px;
-  padding:20px 24px;
-  background:var(--accent-bg);
-  border-left:3px solid var(--accent);
-  font-family:var(--serif);
-  font-size:clamp(15px,1.8vw,17px);
-  color:var(--ink);
-  line-height:2.1;
+  margin:24px 0 24px 20px;padding:20px 24px;
+  background:var(--accent-bg);border-left:3px solid var(--accent);
+  font-family:var(--serif);font-size:clamp(15px,1.8vw,17px);
+  color:var(--ink);line-height:2.1;
 }
 
-/* pull quote — big standalone */
-.pull-quote{
-  max-width:800px;
-  margin:clamp(48px,6vh,80px) auto;
-  text-align:center;
-  padding:0 24px;
+/* pull quote */
+.pull-quote{max-width:800px;margin:clamp(48px,6vh,80px) auto;text-align:center;padding:0 24px}
+.pull-quote p{font-family:var(--display);font-size:clamp(24px,4vw,40px);color:var(--ink);line-height:1.7;margin-bottom:12px}
+.pull-quote cite{font-family:var(--serif);font-size:13px;color:var(--ink-3);font-style:normal;letter-spacing:.05em}
+
+/* slogan banner */
+.slogan-banner{
+  max-width:1100px;margin:0 auto;
+  padding:clamp(48px,8vh,100px) clamp(24px,8vw,160px);
+  display:flex;flex-direction:column;gap:24px;
 }
-.pull-quote p{
+.slogan-item{
+  display:flex;align-items:baseline;gap:16px;
+}
+.slogan-num{
+  font-family:var(--label);font-size:12px;color:var(--accent);
+  letter-spacing:.1em;flex-shrink:0;opacity:.6;
+}
+.slogan-text{
   font-family:var(--display);
-  font-size:clamp(24px,4vw,40px);
-  color:var(--ink);
-  line-height:1.7;
-  margin-bottom:12px;
+  font-size:clamp(28px,5vw,48px);
+  color:var(--ink);line-height:1.4;
 }
-.pull-quote cite{
-  font-family:var(--serif);
-  font-size:13px;color:var(--ink-3);
-  font-style:normal;
-  letter-spacing:.05em;
+.slogan-divider{
+  width:48px;height:1px;background:var(--accent);
+  margin:8px 0 8px 0;opacity:.3;
 }
 
-/* ===== FRIEND CARD ===== */
+/* friend block */
 .friend-block{
-  background:var(--bg-2);
-  border-radius:2px;
-  padding:clamp(28px,4vw,48px);
-  margin-top:32px;
+  background:var(--bg-2);border-radius:2px;
+  padding:clamp(28px,4vw,48px);margin-top:32px;
 }
-.friend-header{
-  display:flex;align-items:center;gap:12px;
-  margin-bottom:24px;
-}
-.friend-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--accent);
-}
-.friend-name{
-  font-family:var(--label);
-  font-size:13px;color:var(--ink-2);
-  letter-spacing:.08em;
-}
+.friend-header{display:flex;align-items:center;gap:12px;margin-bottom:24px}
+.friend-dot{width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.friend-name{font-family:var(--label);font-size:13px;color:var(--ink-2);letter-spacing:.08em}
 .friend-quote{
-  font-family:var(--serif);
-  font-size:clamp(14px,1.6vw,16px);
-  color:var(--ink-2);
-  line-height:2;
-  margin-bottom:16px;
-  padding-left:20px;
-  border-left:2px solid var(--accent-light);
+  font-family:var(--serif);font-size:clamp(14px,1.6vw,16px);
+  color:var(--ink-2);line-height:2;margin-bottom:16px;
+  padding-left:20px;border-left:2px solid var(--accent-light);
 }
 .friend-quote:last-child{margin-bottom:0}
 
-/* ===== ARTICLE GRID ===== */
-.article-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-  gap:20px;
-  margin-top:8px;
-}
-.article-card{
-  padding:24px 24px 20px;
-  border:1px solid rgba(44,36,24,.08);
-  border-radius:2px;
-  transition:border-color .3s,background .3s;
-  cursor:default;
-}
-.article-card:hover{
-  border-color:rgba(184,90,58,.2);
-  background:var(--accent-bg);
-}
-.article-card .ac-cat{
-  font-family:var(--label);
-  font-size:10px;color:var(--accent);
-  letter-spacing:.1em;
-  margin-bottom:8px;
-}
-.article-card .ac-title{
-  font-family:var(--serif);
-  font-size:16px;font-weight:600;
-  line-height:1.5;margin-bottom:8px;
-}
-.article-card .ac-desc{
-  font-size:13px;color:var(--ink-2);
-  line-height:1.75;
-}
-.article-card .ac-time{
-  font-size:10px;color:var(--ink-4);
-  margin-top:12px;
-}
+/* article grid */
+.article-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px;margin-top:8px}
+.article-card{padding:24px 24px 20px;border:1px solid rgba(44,36,24,.08);border-radius:2px;transition:border-color .3s,background .3s;cursor:default}
+.article-card:hover{border-color:rgba(184,90,58,.2);background:var(--accent-bg)}
+.article-card .ac-cat{font-family:var(--label);font-size:10px;color:var(--accent);letter-spacing:.1em;margin-bottom:8px}
+.article-card .ac-title{font-family:var(--serif);font-size:16px;font-weight:600;line-height:1.5;margin-bottom:8px}
+.article-card .ac-desc{font-size:13px;color:var(--ink-2);line-height:1.75}
+.article-card .ac-time{font-size:10px;color:var(--ink-4);margin-top:12px}
 .article-card.wide{grid-column:span 2}
 .article-card.full{grid-column:1/-1}
 
-/* ===== CLOSING ===== */
-.closing{
-  max-width:640px;margin:0 auto;
-  padding:clamp(40px,6vh,80px) 24px clamp(100px,12vh,180px);
-  text-align:center;
-}
-.closing-line{
-  width:32px;height:1px;background:var(--accent);
-  margin:0 auto 32px;
-}
-.closing-text{
-  font-family:var(--serif);
-  font-size:clamp(16px,2.2vw,20px);
-  color:var(--ink);line-height:2.2;
-  margin-bottom:12px;
-}
-.closing-attr{
-  font-family:var(--display);
-  font-size:14px;color:var(--ink-3);
-  margin-bottom:48px;
-}
-.closing-cta{
-  font-size:14px;color:var(--ink-2);line-height:2;
-}
+/* closing */
+.closing{max-width:640px;margin:0 auto;padding:clamp(40px,6vh,80px) 24px clamp(100px,12vh,180px);text-align:center}
+.closing-line{width:32px;height:1px;background:var(--accent);margin:0 auto 32px}
+.closing-text{font-family:var(--serif);font-size:clamp(16px,2.2vw,20px);color:var(--ink);line-height:2.2;margin-bottom:12px}
+.closing-attr{font-family:var(--display);font-size:14px;color:var(--ink-3);margin-bottom:48px}
+.closing-cta{font-size:14px;color:var(--ink-2);line-height:2}
 
-/* ===== SCROLL ANIMATIONS ===== */
-.reveal{
-  opacity:0;transform:translateY(20px);
-  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1);
-}
+/* animations */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 .reveal.show{opacity:1;transform:translateY(0)}
+@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
-@keyframes fadeIn{
-  from{opacity:0;transform:translateY(14px)}
-  to{opacity:1;transform:translateY(0)}
-}
-
-/* ===== RESPONSIVE ===== */
+/* responsive */
 @media(max-width:768px){
   .hero{padding:100px 24px 60px;min-height:85vh}
   .section{padding-left:20px;padding-right:20px}
+  .slogan-banner{padding-left:20px;padding-right:20px}
   .article-card.wide{grid-column:span 1}
   .article-grid{grid-template-columns:1fr}
   .pull-quote p{font-size:clamp(22px,6vw,32px)}
   .top-nav{height:48px;padding:0 16px}
   .top-nav .nav-name{font-size:17px}
   .top-nav .nav-links a{font-size:12px}
+  .slogan-item{flex-direction:column;gap:4px}
 }
-
 @media(max-width:480px){
   .hero-name{font-size:clamp(36px,12vw,52px)}
-  .a{padding-left:0}
-  .q{padding-left:0}
-  .q::before{display:none}
+  .a{padding-left:0}.q{padding-left:0}.q::before{display:none}
   .a-highlight{margin-left:0}
   .friend-block{padding:20px}
 }
@@ -321,7 +211,7 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 </head>
 <body>
 
-<!-- ===== TOP NAV — always visible ===== -->
+<!-- ===== TOP NAV ===== -->
 <nav class="top-nav" id="topNav">
   <a href="conversation.html" class="nav-name">无糖可乐</a>
   <div class="nav-links">
@@ -332,158 +222,163 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 </nav>
 
 <!-- ===== HERO ===== -->
-<section class="hero" style="position:relative">
+<section class="hero">
   <div class="hero-label">一场没有剧本的对话</div>
   <h1 class="hero-name">三瓶无糖可乐</h1>
   <div class="hero-rule"></div>
   <p class="hero-desc">
-    记录者，思考者，产品人。<br>
-    喜欢和人聊天，喜欢听故事，<br>
-    相信每一次真诚的对话都是一次相互照亮。
+    我的人生主线只有一条——<br>
+    <strong style="color:var(--accent);font-size:1.15em">「解放妇女劳动生产力」</strong><br>
+    以及一个生活信条——<br>
+    <strong style="color:var(--accent)">「教会大家玩乐心态」</strong><br>
+    这不是口号，是我正在做的事。
   </p>
   <div class="hero-scroll-hint">SCROLL</div>
 </section>
 
-<!-- ===== 壹 · 你好 ===== -->
+<!-- ===== 壹 · 主线 ===== -->
 <div class="section">
-  <div class="section-label reveal">壹 · 你好</div>
+  <div class="section-label reveal">壹 · 主线</div>
 
   <div class="qa reveal">
-    <div class="q">你是谁？</div>
+    <div class="q">你的两句 slogan 是怎么来的？</div>
     <div class="a">
-      <p>我叫三瓶无糖可乐。名字有点长，但记住了就忘不掉。</p>
-      <p>985 工科本，美国藤校 CS 硕。在腾讯搞过 GPU AI 产品，现在在一家 AI Infra 公司做产品经理，给开发者搭平台。自己还在折腾 MaaS 和 AI Search 的 side project。</p>
+      <p>不是某一天灵光乍现。是听品牌定位的课，和潮汕女生聊女性主义，看到朋友圈一段话——几件不相关的事突然串起来了。</p>
+      <p>品牌定位消耗大量资源，但一旦做出来，收益巨大——它是无形的重资产。<strong>一句 slogan 可能价值整个企业价值观 80% 的含金量。</strong>人生也一样。</p>
     </div>
   </div>
 
-  <div class="a-highlight reveal">但这些都是名片上的东西。如果你有五分钟，我想跟你聊点名片之外的。</div>
+  <div class="a-highlight reveal">定位就像人生的主线任务。理清了这个，主次就明了，方向就清晰。——这不是我自己总结的，是朋友陈怡冰听完我的想法后说出来的。</div>
 
   <div class="qa reveal">
-    <div class="q">那你觉得自己是什么样的人？</div>
+    <div class="q">「解放妇女劳动生产力」——为什么是这句？</div>
     <div class="a">
-      <p>我是一个<strong>特别喜欢和人聊天的人</strong>。不是寒暄式的那种——是那种聊到凌晨三点、聊到对方说「我从来没跟别人说过这些」的那种。</p>
-      <p>无论学历无论背景，我觉得<strong>每一个愿意分享的人背后一定有一段非常精彩的人生</strong>。去发现他们，去找到他们，去听到世界另一侧不同的声音。</p>
+      <p>因为我看到了。</p>
+      <p>影院里全场唯一的男观众，是我。写了一万五千字 B 站稿件《作为男的，我欠女同事们一句话》的人，也是我。</p>
+      <p>所谓的"自由选择"，很多时候是<strong>在一堆都有惩罚的选项里挑一个惩罚最小的</strong>。这不叫自由，这叫在笼子里选牢房。</p>
+      <p>你没觉得有麻烦，不是因为麻烦不存在，是因为它从来不找你。</p>
+      <p>鲁迅早就看透了——"节烈"对男性指思想立场，对女性专指身体贞操，极度双标。一百年了，这个结构变了多少？</p>
     </div>
   </div>
 
-  <div class="a-highlight reveal"><em>我爱真诚的人。我更喜欢从利益的角度出发，再用情感的方式表达。</em></div>
+  <div class="a-highlight reveal">没有极端女权也不会有平权。鲁迅说了：你要把天花板打破，他们才肯开窗。改变不是一个宏大的宣言，改变是一万个微小的决定。不做"盟友表演家"——真正的支持是改变行为，不是发朋友圈。</div>
 
   <div class="qa reveal">
-    <div class="q">平时喜欢什么？</div>
+    <div class="q">「教会大家玩乐心态」呢？</div>
     <div class="a">
-      <p>最喜欢的男演员是<strong>胡歌</strong>，女演员是<strong>文淇</strong>，最爱的主持人是<strong>鲁豫</strong>。鲁豫的采访风格深深影响了我——她总能在看似闲聊中触到最真实的东西。</p>
-      <p>平时喜欢讨论女性主义话题，喜欢看鲁迅，喜欢和各种各样的人聊天。听起来好像很杂，但其实都指向同一件事——<em>试图理解这个世界是怎么运转的，以及人为什么会成为现在这个样子。</em></p>
+      <p>成都四年，是我人生最开心的四年。乐天的情绪，巴适的心态，好吃的饭菜，让我对生活有了全新的认识。</p>
+      <p>读大学最重要的两件事：<strong>找到热爱的事业，享受生活、找到生命中所涵盖的乐趣。</strong></p>
+      <p>太多人把人生当成过关——升学、考研、进大厂、升职。但人生是一个过程，不是过关。面子并不是一个有价值的东西。</p>
     </div>
   </div>
 </div>
 
 <!-- ===== PULL QUOTE ===== -->
 <div class="pull-quote reveal">
-  <p>名片之外，才是一个人真正的样子。</p>
+  <p>看见了就不能装没看见。</p>
 </div>
 
-<!-- ===== 贰 · 思考 ===== -->
+<!-- ===== SLOGAN BANNER ===== -->
+<div class="slogan-banner reveal">
+  <div class="slogan-item">
+    <span class="slogan-num">01</span>
+    <span class="slogan-text">解放妇女劳动生产力</span>
+  </div>
+  <div class="slogan-divider"></div>
+  <div class="slogan-item">
+    <span class="slogan-num">02</span>
+    <span class="slogan-text">教会大家玩乐心态</span>
+  </div>
+</div>
+
+<!-- ===== 贰 · 方法论 ===== -->
 <div class="section">
-  <div class="section-label reveal">贰 · 思考</div>
+  <div class="section-label reveal">贰 · 方法论</div>
 
   <div class="qa reveal">
-    <div class="q">你平时都在想什么？</div>
+    <div class="q">有了方向之后，你怎么走？</div>
     <div class="a">
-      <p>脑子里一直在跑好几条线。但有三条最粗。</p>
+      <p>三句话。</p>
+      <p><strong>实践出真知。</strong>人是无法通过想象来取得最优解的，只能通过实践找到局部最优解。专注现实，不空泛地想象那条路。</p>
+      <p><strong>理论要和实际结合。</strong>毛泽东论持久战——干中学；周恩来做事不务虚，领导也要坚持一线；邓小平多实践，少空想。三个伟人，同一条道理。</p>
+      <p><strong>团结一切可以团结的力量。</strong>再偏门的选择，也能在这片土地上找到同路的人。女性主义不能走纯粹主义路线——包容、团结，才能真正推动改变。</p>
     </div>
   </div>
 
-  <div class="qa reveal">
-    <div class="q">第一条线？</div>
-    <div class="a">
-      <p><strong>鲁迅。</strong>迷茫的时候翻开了鲁迅全集，一发不可收拾看了五本。他让我看到了中国社会的底层逻辑、国民性、人情世故的运转方式。百年前的文字放到今天依然振聋发聩。</p>
-      <p>鲁迅教给我的不只是批判，更是一种<em>直面真相的勇气</em>。看清了不逃避，看见了不装睡——这是我做内容、做产品、做人的底色。</p>
-    </div>
-  </div>
+  <div class="a-highlight reveal">方式方法可以非常多变，但宗旨是不变的。逐本舍末——为了最终目标，过程中的妥协和斗争都只是手段。</div>
 
   <div class="qa reveal">
-    <div class="q">第二条？</div>
+    <div class="q">能举个例子吗？</div>
     <div class="a">
-      <p><strong>家庭教育。</strong>我认为一个人 18 岁前的性格，80% 以上可以由家庭推导出来。</p>
-      <p>拿自己、堂姐、好朋友、发小做了四个案例拆解——缺父爱的容易恋爱脑，缺母爱的容易溺死在情绪里，被溺爱的容易自负。我自己就是被溺爱的那种，所以能看到那个自负的影子。</p>
+      <p>陪朋友去了一次天主教入教仪式。那个神父为了在市中心建教堂，融合了 56 个民族、所有宗教文化，但核心始终是天主教。手段灵活，目标坚定。</p>
+      <p>如果用一句话总结我过去这一年：<strong>实践并验证我的想法。</strong>唯物辩证法、女性主义、认识和改造世界——三条线并行。默认和正确从来不是绑定的，实践才是检验的唯一标准。</p>
     </div>
   </div>
-
-  <div class="qa reveal">
-    <div class="q">第三条？</div>
-    <div class="a">
-      <p><strong>女性主义——从男性视角。</strong>我是那个影院里唯一的男观众。也是那个写了一万五千字 B 站稿件，标题叫「作为男的，我欠女同事们一句话」的人。</p>
-      <p>有些事情看见了就不能装没看见。不是要站在道德高地上教育别人，而是<em>真的觉得这个世界对她们不够公平</em>。</p>
-    </div>
-  </div>
-
-  <div class="a-highlight reveal">建立一套自己的逻辑体系，不被言论和舆论裹挟。别人得到的不是我所失去的。</div>
 </div>
 
 <!-- ===== PULL QUOTE ===== -->
 <div class="pull-quote reveal">
-  <p>看清了不逃避，看见了不装睡。</p>
+  <p>人无法通过想象取得最优解，<br>只能通过实践找到局部最优解。</p>
 </div>
 
-<!-- ===== 叁 · 记录 ===== -->
+<!-- ===== 叁 · 思想 ===== -->
 <div class="section">
-  <div class="section-label reveal">叁 · 记录</div>
+  <div class="section-label reveal">叁 · 思想</div>
+
+  <div class="qa reveal">
+    <div class="q">你是怎么建立自己思想体系的？</div>
+    <div class="a">
+      <p><strong>鲁迅。</strong>迷茫的时候翻开了鲁迅全集，一发不可收拾看了五本。他让我看到了中国社会的底层逻辑、国民性、人情世故的运转方式。</p>
+      <p>勇者愤怒，抽刃向更强者；怯者愤怒，却抽刃向更弱者。一百年过去了，很多道理依然适用。</p>
+      <p>建立一套自己的逻辑体系，不被言论和舆论裹挟。<strong>别人得到的不是我所失去的。</strong></p>
+    </div>
+  </div>
+
+  <div class="qa reveal">
+    <div class="q">除了鲁迅呢？</div>
+    <div class="a">
+      <p><strong>家庭教育。</strong>我认为一个人 18 岁前的性格，80% 以上可以由家庭推导出来。好的童年治愈人一生，坏的童年需要人治愈一生。</p>
+      <p>拿自己和身边人做了案例拆解——缺父爱的容易恋爱脑，缺母爱的容易溺死在情绪里，被溺爱的容易自负。我自己就是被溺爱的那种，所以能看到那个自负的影子。</p>
+      <p>曾经有过把别人捧高再期待摔下来的心理。想通之后，转变为<strong>做把蛋糕做大的人</strong>。</p>
+    </div>
+  </div>
+
+  <div class="a-highlight reveal">要么孤独，要么庸俗。我似乎在走向一条通往"孤独"的路上，但这路上的风景却额外让我着迷。</div>
+
+  <div class="qa reveal">
+    <div class="q">你怎么看待"成功"这件事？</div>
+    <div class="a">
+      <p>人生远不止是大厂。成绩好只意味着成绩好，不代表有完备人格、风趣谈吐或人格魅力。</p>
+      <p><strong>能力是底牌，信任是杠杆。</strong>光有底牌没有杠杆，翻不了大牌。</p>
+      <p>不要还没开始就觉得自己不行。要有高配得感。趁年轻多试错，别怕犯错。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PULL QUOTE ===== -->
+<div class="pull-quote reveal">
+  <p>做把蛋糕做大的人，<br>而不是抢别人盘子里的人。</p>
+</div>
+
+<!-- ===== 肆 · 记录 ===== -->
+<div class="section">
+  <div class="section-label reveal">肆 · 记录</div>
 
   <div class="qa reveal">
     <div class="q">你做过什么有意思的事？</div>
     <div class="a">
-      <p>做了一个采访系列——十几个人，都是些「奇奇怪怪」的人生故事。台湾同胞、潮汕女性主义者、字母圈的姑娘、被原生家庭伤害的妹妹、dating 上头的姐姐……</p>
-      <p>我只是那个拿着话筒的人，把这些声音记录下来。每个人的人生都像一部电影——我觉得我没资格替他们剪辑，只负责按下录制键。</p>
+      <p>做了一个采访系列——十几个人，都是些"奇奇怪怪"的人生故事。台湾同胞、潮汕女性主义者、字母圈的姑娘、被原生家庭伤害的妹妹、dating 上头的姐姐……</p>
+      <p>我只是那个拿着话筒的人。每个人的人生都像一部电影——我觉得我没资格替他们剪辑，只负责按下录制键。</p>
     </div>
   </div>
 
   <div class="qa reveal">
-    <div class="q">还有呢？</div>
+    <div class="q">还做了什么？</div>
     <div class="a">
-      <p>搞了 <strong>AI Coffee Chat</strong>。在深圳南山拉了十二个人坐下来聊 AI。不是那种正经圆桌——就是点杯咖啡，聊聊各自在做什么、困惑什么、兴奋什么。人和人碰在一起，就会产生化学反应。</p>
+      <p>搞了 <strong>AI Coffee Chat</strong>——在深圳南山拉了十二个人坐下来聊 AI。不是正经圆桌，就是点杯咖啡，聊聊各自在做什么、困惑什么。人和人碰在一起，就会产生化学反应。</p>
       <p>在成电办过草坪音乐节，下雨了大家没散反而聚得更紧。一个人跑去新疆西藏看了珠穆朗玛峰。在台湾故宫博物院对着千年文物差点哭出来——<em>物件是冰冷的，但能洞见历史的温度。</em></p>
     </div>
   </div>
-
-  <div class="a-highlight reveal">把声音记录下来，把温度传递出去。这是我做内容的初心。</div>
-</div>
-
-<!-- ===== 肆 · 方法论 ===== -->
-<div class="section">
-  <div class="section-label reveal">肆 · 方法论</div>
-
-  <div class="qa reveal">
-    <div class="q">你有什么信条吗？</div>
-    <div class="a">
-      <p><strong>方式方法可以非常多变，但宗旨是不变的。</strong></p>
-      <p>陪朋友去了一次天主教入教仪式。那个神父为了在市中心建教堂，融合了 56 个民族、所有宗教文化，但核心始终是天主教。手段灵活，目标坚定。</p>
-    </div>
-  </div>
-
-  <div class="a-highlight reveal">逐本舍末——为了最终目标，过程中的妥协和斗争都只是手段。</div>
-
-  <div class="qa reveal">
-    <div class="q">那你的人生 slogan 是什么？</div>
-    <div class="a">
-      <p>两句话。</p>
-      <p><strong>「解放妇女劳动生产力」</strong></p>
-      <p><strong>「教会大家玩乐心态」</strong></p>
-      <p>一句 slogan 可能价值整个企业价值观 80% 的含金量。人生也一样——<em>定位就像人生的主线任务，理清了这个，主次就明了，方向就清晰。</em></p>
-    </div>
-  </div>
-
-  <div class="qa reveal">
-    <div class="q">这两句话怎么来的？</div>
-    <div class="a">
-      <p>不是某一天灵光乍现。是听了品牌定位的课、和潮汕女生聊女性主义、看到朋友圈的一段话——几件不相关的事突然串起来了。</p>
-      <p>越来越觉得需要去动态地行动，才能搞出一些东西来。<strong>实践出真知</strong>，坐着想永远想不出确切的答案。</p>
-    </div>
-  </div>
-</div>
-
-<!-- ===== PULL QUOTE ===== -->
-<div class="pull-quote reveal">
-  <p>定位就像人生的主线任务。<br>理清了这个，方向就清晰了。</p>
 </div>
 
 <!-- ===== 伍 · 朋友说 ===== -->
@@ -492,7 +387,7 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 
   <div class="qa reveal">
     <div class="q">别人怎么评价你？</div>
-    <div class="a"><p>不如让朋友们自己说。</p></div>
+    <div class="a"><p>不如让朋友自己说。</p></div>
   </div>
 
   <div class="friend-block reveal">
@@ -501,7 +396,7 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
       <div class="friend-name">陈怡冰 · 于香港</div>
     </div>
     <div class="friend-quote">你是位细腻真诚善良的人。你的感受很敏锐，思想见解也很有深度。</div>
-    <div class="friend-quote">你来找我们说的那两句话正是我之前所想的，但我没能像你一样提炼得这样分明。定位就像人生的主线任务——理清了这个，方向就清晰了。</div>
+    <div class="friend-quote">你来找我们说的那两句话正是我之前所想的，但我没能像你一样提炼得这样分明。</div>
     <div class="friend-quote">每个人的世界都与另一方交叠，再带着交叠的部分继续交叠，从而形成更明晰更完整的内容。</div>
   </div>
 
@@ -513,18 +408,18 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
   <div class="section-label reveal">陆 · 写过的东西</div>
 
   <div class="article-grid">
-    <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">二十三</div><div class="ac-desc">五年没在家过生日了。在塑造世界观的四年里打破茧房，留学这一年看到了很多不一样的状态。</div><div class="ac-time">约 8 分钟</div></div>
-    <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">二十二</div><div class="ac-desc">人生是一个过程，而不是过关。面子并不是一个有价值的东西。</div><div class="ac-time">约 6 分钟</div></div>
-    <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">找对象</div><div class="ac-desc">你不是我权衡利弊后的选择，而是我怦然心动后的坚定。</div><div class="ac-time">约 5 分钟</div></div>
+    <div class="article-card wide reveal"><div class="ac-cat">B站视频稿</div><div class="ac-title">作为男的，我欠女同事们一句话</div><div class="ac-desc">从会议室的隐形盗窃，到制度的中性歧视，到男性拿了多少免费的分。辛辣输出，男性自省视角。</div><div class="ac-time">约 15 分钟</div></div>
+    <div class="article-card reveal"><div class="ac-cat">影评</div><div class="ac-title">我许可</div><div class="ac-desc">全场唯一的男观众。女性想要的真的不多。</div><div class="ac-time">约 3 分钟</div></div>
     <div class="article-card reveal"><div class="ac-cat">思想笔记</div><div class="ac-title">鲁迅读后感</div><div class="ac-desc">从鲁迅全集里看到中国社会本质、国民性与行为逻辑。</div><div class="ac-time">约 10 分钟</div></div>
     <div class="article-card reveal"><div class="ac-cat">思想笔记</div><div class="ac-title">家庭教育</div><div class="ac-desc">一个人 18 岁前的性格，80% 可由家庭推导。四个真实案例。</div><div class="ac-time">约 8 分钟</div></div>
+    <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">二十三</div><div class="ac-desc">五年没在家过生日了。在塑造世界观的四年里打破茧房，留学这一年看到了很多不一样的状态。</div><div class="ac-time">约 8 分钟</div></div>
+    <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">找对象</div><div class="ac-desc">你不是我权衡利弊后的选择，而是我怦然心动后的坚定。</div><div class="ac-time">约 5 分钟</div></div>
     <div class="article-card reveal"><div class="ac-cat">思想笔记</div><div class="ac-title">从学生到职场人</div><div class="ac-desc">没人再给你安排方向了。找到热爱的事业最重要。</div><div class="ac-time">约 7 分钟</div></div>
-    <div class="article-card wide reveal"><div class="ac-cat">B站视频稿</div><div class="ac-title">作为男的，我欠女同事们一句话</div><div class="ac-desc">从会议室的隐形盗窃，到制度的中性歧视，到男性拿了多少免费的分。辛辣输出，男性自省视角。</div><div class="ac-time">约 15 分钟</div></div>
-    <div class="article-card reveal"><div class="ac-cat">B站视频稿</div><div class="ac-title">为什么职场一定会有嫡系？</div><div class="ac-desc">嫡系不是 bug，是 feature。</div><div class="ac-time">约 10 分钟</div></div>
-    <div class="article-card reveal"><div class="ac-cat">影评</div><div class="ac-title">我许可</div><div class="ac-desc">全场唯一的男观众。女性想要的真的不多。</div><div class="ac-time">约 3 分钟</div></div>
-    <div class="article-card reveal"><div class="ac-cat">游记</div><div class="ac-title">台湾游记</div><div class="ac-desc">物件是冰冷的，但能洞见历史的温度。</div><div class="ac-time">约 12 分钟</div></div>
+    <div class="article-card reveal"><div class="ac-cat">B站视频稿</div><div class="ac-title">为什么职场一定会有嫡系？</div><div class="ac-desc">嫡系不是 bug，是 feature。能力是底牌，信任是杠杆。</div><div class="ac-time">约 10 分钟</div></div>
     <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">年终总结</div><div class="ac-desc">实践并验证我的想法。默认和正确从来不是绑定的。</div><div class="ac-time">约 3 分钟</div></div>
+    <div class="article-card reveal"><div class="ac-cat">游记</div><div class="ac-title">台湾游记</div><div class="ac-desc">物件是冰冷的，但能洞见历史的温度。</div><div class="ac-time">约 12 分钟</div></div>
     <div class="article-card reveal"><div class="ac-cat">思想笔记</div><div class="ac-title">实习记</div><div class="ac-desc">师兄教会我什么叫沉淀。六十分够用，一百分不可能。</div><div class="ac-time">约 6 分钟</div></div>
+    <div class="article-card reveal"><div class="ac-cat">随笔</div><div class="ac-title">二十二</div><div class="ac-desc">人生是一个过程，而不是过关。面子并不是一个有价值的东西。</div><div class="ac-time">约 6 分钟</div></div>
     <div class="article-card reveal"><div class="ac-cat">活动</div><div class="ac-title">AI Coffee Chat · 深圳南山</div><div class="ac-desc">十二人围坐，从 AI 创业聊到人生方向。</div><div class="ac-time">约 4 分钟</div></div>
     <div class="article-card full reveal"><div class="ac-cat">采访系列 · 十四篇</div><div class="ac-title">那些奇奇怪怪的人生</div><div class="ac-desc">台湾同胞 / 潮汕女性主义者 / 坚强妹妹 / 逆天的妈 / dating上头姐 / 字母圈 / 高中妹妹的奇遇 / 地雷哥 ...</div><div class="ac-time">系列长文</div></div>
   </div>
@@ -547,20 +442,15 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
 
 <script>
 (function(){
-  /* Scroll reveal */
   const reveals=document.querySelectorAll('.reveal');
-  let staggerMap=new Map();
   const obs=new IntersectionObserver(entries=>{
     entries.forEach(e=>{
       if(!e.isIntersecting)return;
       const el=e.target;
-      /* stagger article cards */
       if(el.classList.contains('article-card')){
         const cards=[...document.querySelectorAll('.article-card')];
         const i=cards.indexOf(el);
-        const row=Math.floor(i/3);
-        const col=i%3;
-        el.style.transitionDelay=(row*60+col*80)+'ms';
+        el.style.transitionDelay=(Math.floor(i/3)*60+i%3*80)+'ms';
       }
       el.classList.add('show');
       obs.unobserve(el);
@@ -568,7 +458,6 @@ body{font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased
   },{threshold:.08,rootMargin:'0px 0px -30px 0px'});
   reveals.forEach(el=>obs.observe(el));
 
-  /* Nav scroll shadow */
   const nav=document.getElementById('topNav');
   window.addEventListener('scroll',()=>{
     nav.classList.toggle('scrolled',window.scrollY>20);
