@@ -82,6 +82,28 @@ body{font-family:'Noto Serif SC','Georgia',serif;color:var(--ink);-webkit-font-s
 
 .foot{grid-column:2;text-align:center;padding:0 0 56px;font-family:'Ma Shan Zheng',cursive;font-size:14px;color:var(--ink-3);opacity:.4}
 
+/* ===== FLOATING NAV ===== */
+.float-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:12px 28px;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(232,224,208,0.92);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--rule);
+  transform:translateY(-100%);opacity:0;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),opacity .4s;
+  pointer-events:none;
+}
+.float-nav.visible{transform:none;opacity:1;pointer-events:auto}
+.float-nav .fn-logo{font-family:'Ma Shan Zheng',cursive;font-size:18px;color:var(--red);text-decoration:none}
+.float-nav .fn-links{display:flex;gap:20px}
+.float-nav .fn-links a{
+  font-size:12.5px;color:var(--ink-3);text-decoration:none;
+  font-family:'Noto Sans SC',sans-serif;
+  letter-spacing:.03em;transition:color .2s;
+}
+.float-nav .fn-links a:hover{color:var(--ink)}
+.float-nav .fn-links a.current{color:var(--red)}
+
 @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:1100px){
@@ -91,6 +113,9 @@ body{font-family:'Noto Serif SC','Georgia',serif;color:var(--ink);-webkit-font-s
   .envelopes{padding-left:20px;padding-right:20px}
 }
 @media(max-width:700px){
+  .float-nav{padding:10px 16px}
+  .float-nav .fn-links{gap:14px}
+  .float-nav .fn-links a{font-size:11.5px}
   .paper{padding:36px 24px 48px}
   .body p{font-size:15px}
   .env-grid{grid-template-columns:1fr}
@@ -100,6 +125,16 @@ body{font-family:'Noto Serif SC','Georgia',serif;color:var(--ink);-webkit-font-s
 </style>
 </head>
 <body>
+<!-- FLOATING NAV -->
+<nav class="float-nav" id="floatNav">
+  <a href="letter-pc.html" class="fn-logo">可乐</a>
+  <div class="fn-links">
+    <a href="conversation.html">对话体</a>
+    <a href="letter-pc.html" class="current">信件版</a>
+    <a href="articles.html">文章</a>
+  </div>
+</nav>
+
 <div class="page">
   <div class="paper">
     <div class="letter-header">
@@ -166,6 +201,12 @@ body{font-family:'Noto Serif SC','Georgia',serif;color:var(--ink);-webkit-font-s
     entries.forEach(e=>{if(!e.isIntersecting)return;const i=[...envs].indexOf(e.target);setTimeout(()=>{e.target.style.opacity='1';e.target.style.transform='translateY(0)'},i*50);eObs.unobserve(e.target)});
   },{threshold:.05});
   envs.forEach(el=>eObs.observe(el));
+
+  // Float nav: appear after scrolling 300px
+  const floatNav=document.getElementById('floatNav');
+  window.addEventListener('scroll',()=>{
+    floatNav.classList.toggle('visible',window.scrollY>300);
+  },{passive:true});
 })();
 </script>
 </body>
