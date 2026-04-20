@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>三瓶无糖可乐</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600&family=Ma+Shan+Zheng&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#faf6f1;
+  --ink:#2c2418;
+  --ink-2:#5a4e3c;
+  --ink-3:#8a7e6c;
+  --accent:#b85a3a;
+}
+html{height:100%}
+body{
+  font-family:'Noto Sans SC',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  min-height:100%;display:flex;flex-direction:column;
+  justify-content:center;align-items:center;
+  padding:40px 24px;
+  -webkit-font-smoothing:antialiased;
+}
+.name{
+  font-family:'Ma Shan Zheng',cursive;
+  font-size:clamp(42px,8vw,72px);
+  color:var(--ink);
+  margin-bottom:16px;
+  opacity:0;animation:up .7s .1s both;
+}
+.rule{
+  width:36px;height:2px;background:var(--accent);
+  margin-bottom:24px;
+  opacity:0;animation:up .5s .3s both;
+}
+.desc{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(18px,2.8vw,24px);
+  color:var(--ink-2);
+  text-align:center;line-height:2;
+  margin-bottom:clamp(40px,6vh,64px);
+  opacity:0;animation:up .6s .45s both;
+}
+.links{
+  display:flex;gap:clamp(20px,4vw,40px);
+  opacity:0;animation:up .6s .65s both;
+}
+.links a{
+  font-family:'Noto Serif SC',serif;
+  font-size:clamp(18px,2.5vw,24px);
+  color:var(--ink-3);
+  text-decoration:none;
+  padding:8px 0;
+  position:relative;
+  letter-spacing:.06em;
+  transition:color .25s;
+}
+.links a::after{
+  content:'';position:absolute;
+  bottom:0;left:0;right:0;
+  height:1px;background:var(--accent);
+  transform:scaleX(0);
+  transition:transform .3s cubic-bezier(.22,1,.36,1);
+}
+.links a:hover{color:var(--ink)}
+.links a:hover::after{transform:scaleX(1)}
+
+@keyframes up{
+  from{opacity:0;transform:translateY(16px)}
+  to{opacity:1;transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+  <h1 class="name">三瓶无糖可乐</h1>
+  <div class="rule"></div>
+  <p class="desc">你好！见字如面。<br>祝你此时此刻是幸福，平静的。</p>
+  <nav class="links">
+    <a href="conversation.html">对一次话</a>
+    <a href="letter-pc.html">给你的一封信</a>
+    <a href="articles.html">关于我的一些文字</a>
+  </nav>
+</body>
+</html>
